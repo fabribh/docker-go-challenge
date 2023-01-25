@@ -6,3 +6,5 @@ services:
       context: ./go
     image: fabribh/golang-tyne:latest
     container_name: app-go
+    ports:
+      - "8000:8000"
