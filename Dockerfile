@@ -1,12 +1,11 @@
-FROM golang:1.19-alpine
-
-WORKDIR $GOPATH/src/smallest-goland/app
-
+FROM golang:1.19 AS builder
+WORKDIR /src/app
 COPY . .
+RUN set -x && \
+    go get -d -v . && \
+    CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app /src/app
 
-RUN go mod download
-RUN go mod verify
-
-RUN go build -o /main .
-
-CMD [ "/main" ]
+FROM scratch
+WORKDIR /root/
+COPY --from=builder /src/app .
+CMD [ "./app" ]
