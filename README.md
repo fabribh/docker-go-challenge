@@ -2,6 +2,6 @@
 
 the url of the tyne goland image under 2MB
 
-https://hub.docker.com/r/fabribh/golang/tags
+https://hub.docker.com/r/fabribh/go/tags
 
-docker pull fabribh/golang:tyne
+docker pull fabribh/go:prod
